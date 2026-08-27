@@ -1,13 +1,13 @@
-import express from 'express'
+import express from "express";
 
-const app =express();
+const app = express();
 
 app.use(express.json());
 
-app.get('/api/health', (_req, res) => {
-    res.json({status: 'ok'});
+app.get("/api/health", (_req, res) => {
+  res.json({ status: "ok" });
 });
 
 app.listen(3000, () => {
-    console.log('API running on http://localhost:3000')
-})
+  console.log("API running on http://localhost:3000");
+});
