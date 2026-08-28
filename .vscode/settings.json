@@ -1,0 +1,15 @@
+{
+  "editor.formatOnSave": true,
+
+  "eslint.workingDirectories": ["./backend"],
+  "eslint.validate": ["javascript", "typescript"],
+  "eslint.format.enable": true,
+
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  }
+}

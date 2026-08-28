@@ -1,0 +1,19 @@
+import {
+  integer,
+  numeric,
+  pgTable,
+  serial,
+  timestamp,
+  varchar,
+} from "drizzle-orm/pg-core";
+
+export const products = pgTable("products", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  reference: varchar("reference", { length: 100 }).notNull().unique(),
+  price: numeric("price", { precision: 10, scale: 2 }).notNull(),
+  quantity: integer("quantity").notNull().default(0),
+  reservedQuantity: integer("reserved_quantity").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
