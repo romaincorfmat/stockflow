@@ -1,4 +1,8 @@
-import { createProduct, getProducts } from "./product.repository.js";
+import {
+  createProduct,
+  getProductById,
+  getProducts,
+} from "./product.repository.js";
 import { CreateProductInput } from "./product.schema.js";
 
 export const createProductService = (data: CreateProductInput) => {
@@ -7,4 +11,8 @@ export const createProductService = (data: CreateProductInput) => {
 
 export const getProductsService = async () => {
   return getProducts();
+};
+
+export const getProductByIdService = async (id: number) => {
+  return getProductById(id);
 };
