@@ -1,11 +1,16 @@
 import { Request, Response } from "express";
 
-import { createProductSchema, updateProductSchema } from "./product.schema.js";
+import {
+  createProductSchema,
+  receiveProductSchema,
+  updateProductSchema,
+} from "./product.schema.js";
 import {
   createProductService,
   deleteProductService,
   getProductByIdService,
   getProductsService,
+  receiveProductService,
   updateProductService,
 } from "./product.service.js";
 
@@ -73,6 +78,28 @@ export const updateProductController = async (req: Request, res: Response) => {
 
   if (!updatedProduct) {
     return res.status(404).json({ message: "Product not found" });
+  }
+
+  return res.status(200).json(updatedProduct);
+};
+
+export const receiveProductController = async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+
+  if (Number.isNaN(id)) {
+    return res.status(400).json({
+      message: "Invalid product ID",
+    });
+  }
+
+  const data = receiveProductSchema.parse(req.body);
+
+  const updatedProduct = await receiveProductService(id, data);
+
+  if (!updatedProduct) {
+    return res.status(404).json({
+      message: "Product not found",
+    });
   }
 
   return res.status(200).json(updatedProduct);

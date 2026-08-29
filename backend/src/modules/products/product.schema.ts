@@ -15,3 +15,9 @@ export const updateProductSchema = createProductSchema
   });
 
 export type UpdateProductInput = z.infer<typeof updateProductSchema>;
+
+export const receiveProductSchema = z.object({
+  quantity: z.number().int().min(1),
+});
+
+export type ReceiveProductInput = z.infer<typeof receiveProductSchema>;
