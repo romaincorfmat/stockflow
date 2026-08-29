@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 
-import { createProductSchema } from "./product.schema.js";
+import { createProductSchema, updateProductSchema } from "./product.schema.js";
 import {
   createProductService,
   deleteProductService,
   getProductByIdService,
   getProductsService,
+  updateProductService,
 } from "./product.service.js";
 
 export const createProductController = async (req: Request, res: Response) => {
@@ -55,4 +56,24 @@ export const deleteProductController = async (req: Request, res: Response) => {
     });
 
   return res.status(204).send();
+};
+
+export const updateProductController = async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+
+  if (Number.isNaN(id)) {
+    return res.status(400).json({
+      message: "Invalid product ID",
+    });
+  }
+
+  const data = updateProductSchema.parse(req.body);
+
+  const updatedProduct = await updateProductService(id, data);
+
+  if (!updatedProduct) {
+    return res.status(404).json({ message: "Product not found" });
+  }
+
+  return res.status(200).json(updatedProduct);
 };
