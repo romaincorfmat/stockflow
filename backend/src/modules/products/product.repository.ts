@@ -26,3 +26,12 @@ export const getProductById = async (id: number) => {
 
   return product;
 };
+
+export const deleteProduct = async (id: number) => {
+  const [deletedProduct] = await db
+    .delete(products)
+    .where(eq(products.id, id))
+    .returning();
+
+  return deletedProduct;
+};

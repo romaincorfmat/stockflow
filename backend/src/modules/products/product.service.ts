@@ -1,5 +1,6 @@
 import {
   createProduct,
+  deleteProduct,
   getProductById,
   getProducts,
 } from "./product.repository.js";
@@ -15,4 +16,8 @@ export const getProductsService = async () => {
 
 export const getProductByIdService = async (id: number) => {
   return getProductById(id);
+};
+
+export const deleteProductService = async (id: number) => {
+  return deleteProduct(id);
 };
