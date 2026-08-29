@@ -14,3 +14,7 @@ export const createProduct = async (data: CreateProductInput) => {
 
   return product;
 };
+
+export const getProducts = () => {
+  return db.select().from(products);
+};
