@@ -3,9 +3,14 @@ import {
   deleteProduct,
   getProductById,
   getProducts,
+  receiveProduct,
   updateProduct,
 } from "./product.repository.js";
-import { CreateProductInput, UpdateProductInput } from "./product.schema.js";
+import {
+  CreateProductInput,
+  ReceiveProductInput,
+  UpdateProductInput,
+} from "./product.schema.js";
 
 export const createProductService = (data: CreateProductInput) => {
   return createProduct(data);
@@ -28,4 +33,11 @@ export const updateProductService = async (
   data: UpdateProductInput,
 ) => {
   return updateProduct(id, data);
+};
+
+export const receiveProductService = async (
+  id: number,
+  data: ReceiveProductInput,
+) => {
+  return receiveProduct(id, data.quantity);
 };

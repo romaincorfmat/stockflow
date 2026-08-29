@@ -5,6 +5,7 @@ import {
   deleteProductController,
   getProductByIdController,
   getProductsController,
+  receiveProductController,
   updateProductController,
 } from "./product.controller.js";
 
@@ -15,3 +16,5 @@ productRouter.get("/:id", getProductByIdController);
 productRouter.post("/", createProductController);
 productRouter.delete("/:id", deleteProductController);
 productRouter.patch("/:id", updateProductController);
+
+productRouter.post("/:id/receive", receiveProductController);
