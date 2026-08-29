@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 
-import { CreateProductInput } from "./product.schema.js";
+import { CreateProductInput, UpdateProductInput } from "./product.schema.js";
 import { db } from "../../db/index.js";
 import { products } from "../../db/schema.js";
 
@@ -34,4 +34,18 @@ export const deleteProduct = async (id: number) => {
     .returning();
 
   return deletedProduct;
+};
+
+export const updateProduct = async (id: number, data: UpdateProductInput) => {
+  const [updatedProduct] = await db
+    .update(products)
+    .set({
+      ...data,
+      price: data.price?.toString(),
+      updatedAt: new Date(),
+    })
+    .where(eq(products.id, id))
+    .returning();
+
+  return updatedProduct;
 };
