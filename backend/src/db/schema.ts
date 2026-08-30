@@ -17,3 +17,13 @@ export const products = pgTable("products", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
+
+export const stockMovements = pgTable("stock_movements", {
+  id: serial("id").primaryKey(),
+  productId: integer("product_id")
+    .notNull()
+    .references(() => products.id),
+  quantityChange: integer("quantity_change").notNull(),
+  movementType: varchar("movement_type").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});

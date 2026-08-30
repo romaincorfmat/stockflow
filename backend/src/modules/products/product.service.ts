@@ -13,6 +13,8 @@ import {
   SearchProductInput,
   UpdateProductInput,
 } from "./product.schema.js";
+import { db } from "../../db/index.js";
+import { createStockMovement } from "../stock-movements/stock-movement.repository.js";
 
 export const createProductService = (data: CreateProductInput) => {
   return createProduct(data);
@@ -41,7 +43,17 @@ export const receiveProductService = async (
   id: number,
   data: ReceiveProductInput,
 ) => {
-  return receiveProduct(id, data.quantity);
+  return db.transaction(async (tx) => {
+    const updatedProduct = await receiveProduct(id, data.quantity, tx);
+
+    if (!updatedProduct) {
+      return undefined;
+    }
+
+    await createStockMovement(id, data.quantity, "reception", tx);
+
+    return updatedProduct;
+  });
 };
 
 export const searchProductsService = async (data: SearchProductInput) => {
