@@ -1,0 +1,17 @@
+services:
+  stockflow-api:
+    build: .
+    container_name: stockflow-api
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    networks:
+      - default
+      - postgres
+
+networks:
+  postgres:
+    external: true
+    name: postgres_default

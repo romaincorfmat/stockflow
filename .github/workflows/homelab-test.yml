@@ -1,0 +1,24 @@
+name: Homelab Test
+
+on:
+  push:
+    branches:
+      - feature/docker-deployment
+
+
+jobs:
+  test-homelab:
+    runs-on: [self-hosted, Linux, X64, stockflow]
+
+    steps:
+      - name: Say hello
+        run: echo "Hello from my homelab!"
+
+      - name: Show hostname
+        run: hostname
+
+      - name: Show current user
+        run: whoami
+
+      - name: Show current directory
+        run: pwd

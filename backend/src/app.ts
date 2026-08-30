@@ -10,7 +10,7 @@ app.use(express.json());
 app.use("/api/products", productRouter);
 
 app.get("/api/health", (_req, res) => {
-  res.json({ status: "ok" });
+  res.json({ status: "ok", service: "stockflow-api" });
 });
 
 app.use(errorHandler);
