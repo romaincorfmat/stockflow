@@ -1,7 +1,10 @@
 name: Homelab Test
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - feature/docker-deployment
+
 
 jobs:
   test-homelab:
