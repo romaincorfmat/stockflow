@@ -3,6 +3,7 @@ import { eq, ilike, or, sql } from "drizzle-orm";
 import { CreateProductInput, UpdateProductInput } from "./product.schema.js";
 import { db } from "../../db/index.js";
 import { products } from "../../db/schema.js";
+import { Database } from "../../db/types.js";
 
 export const createProduct = async (data: CreateProductInput) => {
   const [product] = await db
@@ -50,8 +51,12 @@ export const updateProduct = async (id: number, data: UpdateProductInput) => {
   return updatedProduct;
 };
 
-export const receiveProduct = async (id: number, quantity: number) => {
-  const [updatedProduct] = await db
+export const receiveProduct = async (
+  id: number,
+  quantity: number,
+  database: Database = db,
+) => {
+  const [updatedProduct] = await database
     .update(products)
     .set({
       quantity: sql`${products.quantity} + ${quantity}`,

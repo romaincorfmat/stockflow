@@ -8,6 +8,13 @@
       "when": 1787932861971,
       "tag": "0000_loose_talon",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1788103053158,
+      "tag": "0001_right_sheva_callister",
+      "breakpoints": true
     }
   ]
 }

@@ -19,6 +19,11 @@ jobs:
           cd /srv/homelab/apps/stockflow/backend
           docker compose up -d --build
 
+      - name: Run database migrations
+        run: |
+          cd /srv/homelab/apps/stockflow/backend
+          docker compose exec -T stockflow-api npm run db:migrate
+
       - name: Health Check
         run: |
           sleep 5
