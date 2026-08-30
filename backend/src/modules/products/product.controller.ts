@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import {
   createProductSchema,
   receiveProductSchema,
+  searchProductSchema,
   updateProductSchema,
 } from "./product.schema.js";
 import {
@@ -11,6 +12,7 @@ import {
   getProductByIdService,
   getProductsService,
   receiveProductService,
+  searchProductsService,
   updateProductService,
 } from "./product.service.js";
 
@@ -103,4 +105,12 @@ export const receiveProductController = async (req: Request, res: Response) => {
   }
 
   return res.status(200).json(updatedProduct);
+};
+
+export const searchProductsController = async (req: Request, res: Response) => {
+  const data = searchProductSchema.parse(req.query);
+
+  const searchedProducts = await searchProductsService(data);
+
+  return res.status(200).json(searchedProducts);
 };

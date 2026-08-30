@@ -4,11 +4,13 @@ import {
   getProductById,
   getProducts,
   receiveProduct,
+  searchProducts,
   updateProduct,
 } from "./product.repository.js";
 import {
   CreateProductInput,
   ReceiveProductInput,
+  SearchProductInput,
   UpdateProductInput,
 } from "./product.schema.js";
 
@@ -40,4 +42,8 @@ export const receiveProductService = async (
   data: ReceiveProductInput,
 ) => {
   return receiveProduct(id, data.quantity);
+};
+
+export const searchProductsService = async (data: SearchProductInput) => {
+  return searchProducts(data.q);
 };

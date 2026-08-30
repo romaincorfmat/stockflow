@@ -1,4 +1,4 @@
-import { eq, sql } from "drizzle-orm";
+import { eq, ilike, or, sql } from "drizzle-orm";
 
 import { CreateProductInput, UpdateProductInput } from "./product.schema.js";
 import { db } from "../../db/index.js";
@@ -61,4 +61,13 @@ export const receiveProduct = async (id: number, quantity: number) => {
     .returning();
 
   return updatedProduct;
+};
+
+export const searchProducts = async (q: string) => {
+  return db
+    .select()
+    .from(products)
+    .where(
+      or(ilike(products.name, `%${q}%`), ilike(products.reference, `%${q}%`)),
+    );
 };

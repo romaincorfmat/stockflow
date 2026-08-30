@@ -21,3 +21,9 @@ export const receiveProductSchema = z.object({
 });
 
 export type ReceiveProductInput = z.infer<typeof receiveProductSchema>;
+
+export const searchProductSchema = z.object({
+  q: z.string().min(1),
+});
+
+export type SearchProductInput = z.infer<typeof searchProductSchema>;
