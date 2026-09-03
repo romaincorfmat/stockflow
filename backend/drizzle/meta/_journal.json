@@ -15,6 +15,13 @@
       "when": 1788103053158,
       "tag": "0001_right_sheva_callister",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1788453978943,
+      "tag": "0002_rainy_lily_hollister",
+      "breakpoints": true
     }
   ]
 }
